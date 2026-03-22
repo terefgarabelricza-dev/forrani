@@ -247,25 +247,98 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-content { padding: 2.5rem 1.5rem; margin: 1rem; max-width: 100%; border-radius: 20px; }
-            .title { font-size: 2.4rem; }
-            .subtitle { font-size: 1rem; margin-bottom: 2rem; }
-            .message-section { padding: 1.5rem; margin: 2rem 0; }
-            .message { font-size: 1rem; }
-            .question { font-size: 1.3rem; margin: 2rem 0 1rem 0; }
-            .buttons-section { flex-direction: column; gap: 1.5rem; min-height: 140px; }
-            .btn-custom { padding: 1rem 2rem; font-size: 1rem; width: 100%; max-width: 250px; }
-            .gif-container img { max-width: 220px; }
+            .hero-section {
+                padding: 1rem;
+                min-height: auto;
+            }
+            .hero-content {
+                padding: 2rem 1.5rem;
+                margin: 0;
+                max-width: 100%;
+                border-radius: 20px;
+                text-align: center;
+            }
+            .title {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+            .subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 2rem;
+            }
+            .message-section {
+                padding: 1.5rem 1rem;
+                margin: 2rem 0;
+                border-radius: 15px;
+            }
+            .message {
+                font-size: 0.95rem;
+                text-align: center;
+            }
+            .question {
+                font-size: 1.3rem;
+                margin: 2rem 0 1.5rem 0;
+                text-align: center;
+            }
+            .buttons-section {
+                flex-direction: column;
+                gap: 1rem;
+                min-height: auto;
+                align-items: center;
+                justify-content: center;
+            }
+            .btn-custom {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 250px;
+                margin: 0 auto;
+            }
+            .gif-container {
+                text-align: center;
+                margin: 1.5rem 0;
+            }
+            .gif-container img {
+                max-width: 200px;
+                height: auto;
+            }
         }
 
         @media (max-width: 480px) {
-            .hero-content { padding: 2rem 1rem; border-radius: 15px; }
-            .title { font-size: 2rem; }
-            .subtitle { font-size: 0.95rem; }
-            .message { font-size: 0.95rem; }
-            .question { font-size: 1.2rem; }
-            .btn-custom { padding: 0.9rem 1.5rem; font-size: 0.95rem; }
-            .gif-container img { max-width: 180px; }
+            .hero-content {
+                padding: 1.5rem 1rem;
+                border-radius: 15px;
+            }
+            .title {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+            .subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+            .message-section {
+                padding: 1rem;
+                margin: 1.5rem 0;
+            }
+            .message {
+                font-size: 0.9rem;
+            }
+            .question {
+                font-size: 1.1rem;
+                margin: 1.5rem 0 1rem 0;
+            }
+            .buttons-section {
+                gap: 0.8rem;
+            }
+            .btn-custom {
+                padding: 0.9rem 1.5rem;
+                font-size: 0.95rem;
+                max-width: 220px;
+            }
+            .gif-container img {
+                max-width: 160px;
+            }
         }
 
         /* Typing animation */
@@ -366,28 +439,29 @@
             window.location.href = 'https://wa.me/6282125283598?text=Hai!%20Aku%20Rani.%20Iya,%20aku%20mau%20menjalin%20hubungan%20sama%20kamu!%20❤️';
         });
 
-        // Fun 'No' button behavior
+// Fun 'No' button behavior - disabled on mobile for cleaner layout
         let noClickCount = 0;
         noBtn.addEventListener('mouseover', () => {
-            const buttonsSection = document.querySelector('.buttons-section');
-            const sectionRect = buttonsSection.getBoundingClientRect();
-            const btnRect = noBtn.getBoundingClientRect();
+            if (window.innerWidth > 768) { // Only move on desktop
+                const buttonsSection = document.querySelector('.buttons-section');
+                const sectionRect = buttonsSection.getBoundingClientRect();
+                const btnRect = noBtn.getBoundingClientRect();
 
-            // Keep button within buttons section bounds
-            const maxX = sectionRect.width - btnRect.width;
-            const maxY = sectionRect.height - btnRect.height;
+                const maxX = sectionRect.width - btnRect.width;
+                const maxY = sectionRect.height - btnRect.height;
 
-            let newLeft, newTop;
-            let attempts = 0;
-            do {
-                newLeft = Math.random() * maxX;
-                newTop = Math.random() * maxY;
-                attempts++;
-            } while (attempts < 10 && Math.abs(newLeft - noBtn.offsetLeft) < 30 && Math.abs(newTop - noBtn.offsetTop) < 30);
+                let newLeft, newTop;
+                let attempts = 0;
+                do {
+                    newLeft = Math.random() * maxX;
+                    newTop = Math.random() * maxY;
+                    attempts++;
+                } while (attempts < 10 && Math.abs(newLeft - noBtn.offsetLeft) < 50 && Math.abs(newTop - noBtn.offsetTop) < 50);
 
-            noBtn.style.position = 'absolute';
-            noBtn.style.left = newLeft + 'px';
-            noBtn.style.top = newTop + 'px';
+                noBtn.style.position = 'absolute';
+                noBtn.style.left = newLeft + 'px';
+                noBtn.style.top = newTop + 'px';
+            }
         });
 
         noBtn.addEventListener('click', () => {
